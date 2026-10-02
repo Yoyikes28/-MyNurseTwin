@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyNurseTwin 🌸</title>
+<style>
+:root{
+--cream:#fff8f4;--pink:#f5c8d2;--rose:#d98f9f;
+--sage:#b9d5bd;--blue:#c5d2ed;--brown:#59433d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--brown);
+font-family:Arial,sans-serif}
+header{padding:25px 7%;display:flex;justify-content:space-between;
+align-items:center;background:white}
+.logo{font-size:25px;font-weight:bold}
+.btn{background:var(--rose);color:white;border:0;border-radius:25px;
+padding:12px 20px;font-weight:bold}
+.hero{padding:55px 7%;text-align:center}
+.hero h1{font-size:44px;margin:10px}
+.hero p{font-size:18px}
+.container{max-width:1100px;margin:auto;padding:20px}
+h2{text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px}
+.card{background:white;border-radius:22px;padding:22px;text-align:center;
+box-shadow:0 5px 20px #0000000b}
+.card:hover{transform:translateY(-3px)}
+.flower{font-size:40px}
+.timer{text-align:center;background:white;border-radius:25px;
+padding:30px;margin:35px 0}
+#time{font-size:55px;font-weight:bold;margin:15px}
+.controls button{margin:5px}
+.garden{background:#edf6ed;border-radius:25px;padding:30px;text-align:center}
+.plant{font-size:75px}
+.bar{height:15px;background:#ddd;border-radius:20px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--sage)}
+.price{font-size:35px;font-weight:bold}
+footer{text-align:center;padding:40px;color:#88716a}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">🌸 MyNurseTwin</div>
+<button class="btn">Start Studying</button>
+</header>
+
+<section class="hero">
+<h1>Your nursing study twin. 🌷</h1>
+<p>Study a little. Grow a lot. Become the nurse you’re working toward.</p>
+<button class="btn">🌱 Grow My Garden</button>
+</section>
+
+<div class="container">
+
+<h2>🌷 Your Study Garden</h2>
+<div class="grid">
+
+<div class="card"><div class="flower">🌷</div><h3>Pharm Garden</h3><p>Medications & pharmacology</p></div>
+<div class="card"><div class="flower">🌹</div><h3>Patho Garden</h3><p>Pathophysiology</p></div>
+<div class="card"><div class="flower">🌼</div><h3>Assessment Garden</h3><p>Health assessment</p></div>
+<div class="card"><div class="flower">🪻</div><h3>NCLEX Garden</h3><p>NCLEX-style questions</p></div>
+<div class="card"><div class="flower">🌻</div><h3>Fundamentals Garden</h3><p>Nursing fundamentals</p></div>
+<div class="card"><div class="flower">🌺</div><h3>Neuro Garden</h3><p>Neurological concepts</p></div>
+<div class="card"><div class="flower">🌿</div><h3>Respiratory Garden</h3><p>Respiratory concepts</p></div>
+<div class="card"><div class="flower">🌸</div><h3>Cardio Garden</h3><p>Cardiovascular concepts</p></div>
+
+</div>
+
+<div class="timer">
+<h2>⏱️ Study Timer</h2>
+<div id="time">00:00:00</div>
+<div class="controls">
+<button class="btn" onclick="start()">Start</button>
+<button class="btn" onclick="pause()">Pause</button>
+<button class="btn" onclick="reset()">Reset</button>
+</div>
+<p>Every minute you study helps your garden grow. 🌱</p>
+</div>
+
+<div class="garden">
+<h2>🌱 Your Garden Is Growing!</h2>
+<div class="plant" id="plant">🌱</div>
+<h3 id="stage">Seedling</h3>
+<p><span id="hours">0</span> study hours</p>
+<div class="bar"><div class="fill" id="fill"></div></div>
+<p id="message">Start studying to plant your first flower!</p>
+</div>
+
+<h2>💗 Study Tools</h2>
+<div class="grid">
+<div class="card"><div class="flower">🧠</div><h3>Ask My Twin</h3><p>Ask nursing questions.</p></div>
+<div class="card"><div class="flower">📋</div><h3>NCLEX Practice</h3><p>Practice with rationales.</p></div>
+<div class="card"><div class="flower">🗂️</div><h3>Flashcards</h3><p>Turn concepts into cards.</p></div>
+<div class="card"><div class="flower">📚</div><h3>Study Notes</h3><p>Organize your nursing notes.</p></div>
+</div>
+
+<div class="card" style="margin-top:35px">
+<h2>🌸 MyNurseTwin Plus</h2>
+<div class="price">$10<span style="font-size:16px">/month</span></div>
+<p>Unlimited AI study questions • Advanced NCLEX practice • Lecture tools • Progress tracking • Garden rewards</p>
+<button class="btn">Grow With Plus 🌷</button>
+</div>
+
+</div>
+
+<footer>
+🌸 MyNurseTwin • Your nursing study twin.
+</footer>
+
+<script>
+let seconds=0,timer=null;
+
+function display(){
+let h=Math.floor(seconds/3600);
+let m=Math.floor((seconds%3600)/60);
+let s=seconds%60;
+document.getElementById("time").textContent=
+[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");
+let hours=seconds/3600;
+document.getElementById("hours").textContent=hours.toFixed(1);
+
+let level=Math.min(hours/10*100,100);
+document.getElementById("fill").style.width=level+"%";
+
+let plant="🌱",stage="Seedling",msg="Start studying to plant your first flower!";
+if(hours>=1){plant="🌷";stage="Growing";msg="Your first flower is blooming!"}
+if(hours>=3){plant="🌼";stage="Blooming";msg="Your garden is getting beautiful!"}
+if(hours>=5){plant="🌸";stage="Thriving";msg="Your nursing knowledge is growing!"}
+if(hours>=10){plant="🌺";stage="Nursing Garden";msg="Look at your beautiful nursing garden!"}
+
+document.getElementById("plant").textContent=plant;
+document.getElementById("stage").textContent=stage;
+document.getElementById("message").textContent=msg;
+}
+
+function start(){
+if(!timer) timer=setInterval(()=>{seconds++;display()},1000);
+}
+function pause(){clearInterval(timer);timer=null}
+function reset(){pause();seconds=0;display()}
+display();
+</script>
+
+</body>
+</html>
