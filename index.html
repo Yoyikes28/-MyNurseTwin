@@ -161,6 +161,73 @@ function startNCLEX(){
         "Recheck the respiratory rate in 4 hours"
       ],
       answer: 1,
+      rationale: "A respiratory rate of 8/min indicates bradypnea. The nurse should assess airway and breathing immediately."
+    },
+    {
+      q: "Which finding should the nurse report immediately?",
+      options: [
+        "Heart rate of 78/min",
+        "Temperature of 37°C",
+        "Oxygen saturation of 88%",
+        "Respiratory rate of 16/min"
+      ],
+      answer: 2,
+      rationale: "An oxygen saturation of 88% is below the expected range and requires prompt assessment."
+    }
+  ];
+
+  let score = 0;
+  let current = 0;
+
+  function showQuestion(){
+    const item = questions[current];
+
+    let answer = prompt(
+      "🩺 NCLEX Question " + (current + 1) + "\\n\\n" +
+      item.q + "\\n\\n" +
+      "A. " + item.options[0] + "\\n" +
+      "B. " + item.options[1] + "\\n" +
+      "C. " + item.options[2] + "\\n" +
+      "D. " + item.options[3] +
+      "\\n\\nType A, B, C, or D:"
+    );
+
+    if (!answer) return;
+
+    const selected = answer.toUpperCase().charCodeAt(0) - 65;
+
+    if(selected === item.answer){
+      score++;
+      alert("✅ Correct!\\n\\n" + item.rationale);
+    } else {
+      alert(
+        "❌ Incorrect.\\n\\nCorrect answer: " +
+        String.fromCharCode(65 + item.answer) +
+        "\\n\\n" + item.rationale
+      );
+    }
+
+    current++;
+
+    if(current < questions.length){
+      showQuestion();
+    } else {
+      alert("🌸 Quiz complete!\\n\\nYour score: " + score + "/" + questions.length);
+    }
+  }
+
+  showQuestion();
+}
+  const questions = [
+    {
+      q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
+      options: [
+        "Document the finding",
+        "Assess the client's airway and breathing",
+        "Offer the client water",
+        "Recheck the respiratory rate in 4 hours"
+      ],
+      answer: 1,
       rationale: "A respiratory rate of 8/min indicates bradypnea. Airway and breathing should be assessed immediately."
     }
   ];
