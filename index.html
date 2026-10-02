@@ -151,6 +151,38 @@ display();
 
 <script>
 function startNCLEX(){
+  const question = {
+    q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
+    options: [
+      "Document the finding",
+      "Assess the client's airway and breathing",
+      "Offer the client water",
+      "Recheck the respiratory rate in 4 hours"
+    ],
+    answer: 1,
+    rationale: "A respiratory rate of 8/min indicates bradypnea. The nurse should assess airway and breathing immediately."
+  };
+
+  const answer = prompt(
+    "🩺 NCLEX Practice\\n\\n" +
+    question.q +
+    "\\n\\nA. " + question.options[0] +
+    "\\nB. " + question.options[1] +
+    "\\nC. " + question.options[2] +
+    "\\nD. " + question.options[3] +
+    "\\n\\nType A, B, C, or D:"
+  );
+
+  if (!answer) return;
+
+  const selected = answer.toUpperCase().charCodeAt(0) - 65;
+
+  if (selected === question.answer) {
+    alert("✅ Correct!\\n\\n" + question.rationale);
+  } else {
+    alert("❌ Incorrect.\\n\\nCorrect answer: B\\n\\n" + question.rationale);
+  }
+}
   const questions = [
     {
       q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
