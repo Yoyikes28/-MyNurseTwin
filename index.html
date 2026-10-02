@@ -2,256 +2,1179 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MyNurseTwin 🌸</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Nurse Twin</title>
+
 <style>
-:root{
---cream:#fff8f4;--pink:#f5c8d2;--rose:#d98f9f;
---sage:#b9d5bd;--blue:#c5d2ed;--brown:#59433d;
+* {
+  box-sizing: border-box;
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--brown);
-font-family:Arial,sans-serif}
-header{padding:25px 7%;display:flex;justify-content:space-between;
-align-items:center;background:white}
-.logo{font-size:25px;font-weight:bold}
-.btn{background:var(--rose);color:white;border:0;border-radius:25px;
-padding:12px 20px;font-weight:bold}
-.hero{padding:55px 7%;text-align:center}
-.hero h1{font-size:44px;margin:10px}
-.hero p{font-size:18px}
-.container{max-width:1100px;margin:auto;padding:20px}
-h2{text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px}
-.card{background:white;border-radius:22px;padding:22px;text-align:center;
-box-shadow:0 5px 20px #0000000b}
-.card:hover{transform:translateY(-3px)}
-.flower{font-size:40px}
-.timer{text-align:center;background:white;border-radius:25px;
-padding:30px;margin:35px 0}
-#time{font-size:55px;font-weight:bold;margin:15px}
-.controls button{margin:5px}
-.garden{background:#edf6ed;border-radius:25px;padding:30px;text-align:center}
-.plant{font-size:75px}
-.bar{height:15px;background:#ddd;border-radius:20px;overflow:hidden}
-.fill{height:100%;width:0;background:var(--sage)}
-.price{font-size:35px;font-weight:bold}
-footer{text-align:center;padding:40px;color:#88716a}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff8fb;
+  color: #302936;
+}
+
+body.dark {
+  background: #19161d;
+  color: #f7eef7;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #df82a5;
+}
+
+button {
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+}
+
+.theme {
+  border: 0;
+  background: white;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 18px;
+}
+
+body.dark .theme {
+  background: #302936;
+}
+
+.container {
+  width: 92%;
+  max-width: 1100px;
+  margin: auto;
+  padding-bottom: 50px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #f7b4cc, #b8a8ed);
+  color: white;
+  padding: 32px;
+  border-radius: 28px;
+  margin-bottom: 22px;
+}
+
+.hero small {
+  opacity: 0.85;
+}
+
+.hero h1 {
+  font-size: 40px;
+  margin: 8px 0;
+}
+
+.hero p {
+  line-height: 1.6;
+}
+
+.motivation {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.2);
+  padding: 18px;
+  border-radius: 17px;
+}
+
+.motivation-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.motivation-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 7px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 8px 25px rgba(80,50,80,0.08);
+}
+
+body.dark .card {
+  background: #29242e;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.stat {
+  text-align: center;
+  padding: 15px;
+  border-radius: 15px;
+  background: #fff0f5;
+}
+
+body.dark .stat {
+  background: #372d37;
+}
+
+.stat-number {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.task-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.task-input input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+}
+
+body.dark input {
+  background: #1f1b22;
+  color: white;
+  border-color: #514957;
+}
+
+.add {
+  border: 0;
+  background: #df82a5;
+  color: white;
+  padding: 0 18px;
+  border-radius: 12px;
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+body.dark .task {
+  border-color: #423b46;
+}
+
+.task:last-child {
+  border-bottom: 0;
+}
+
+.task input {
+  width: 18px;
+  height: 18px;
+}
+
+.task.done span {
+  text-decoration: line-through;
+  opacity: 0.45;
+}
+
+.delete {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+}
+
+.timer {
+  text-align: center;
+}
+
+.timer-display {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.timer button {
+  border: 0;
+  padding: 10px 15px;
+  margin: 3px;
+  border-radius: 10px;
+  background: #f4e9ff;
+}
+
+.timer .start {
+  background: #df82a5;
+  color: white;
+}
+
+.progress {
+  height: 10px;
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #a38bd8;
+  transition: 0.3s;
+}
+
+.water {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.glass {
+  width: 42px;
+  height: 55px;
+  border: 2px solid #82afd8;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.glass.full {
+  background: #b8d9f4;
+}
+
+.fact {
+  background: #eff9f2;
+  padding: 18px;
+  border-radius: 15px;
+  line-height: 1.6;
+}
+
+body.dark .fact {
+  background: #26362d;
+}
+
+.mood-buttons {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+}
+
+.mood {
+  border: 0;
+  padding: 14px 5px;
+  border-radius: 13px;
+  background: #f8f5f8;
+}
+
+body.dark .mood {
+  background: #37313b;
+  color: white;
+}
+
+.mood.selected {
+  outline: 2px solid #df82a5;
+  background: #fff0f5;
+}
+
+footer {
+  text-align: center;
+  margin-top: 35px;
+  color: #888;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: span 1;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">🌸 MyNurseTwin</div>
-<button class="btn">Start Studying</button>
-</header>
+  <div class="logo">
+    My Nurse <span>Twin</span> 🩺
+  </div>
 
-<section class="hero">
-<h1>Your nursing study twin. 🌷</h1>
-<p>Study a little. Grow a lot. Become the nurse you’re working toward.</p>
-<button class="btn">🌱 Grow My Garden</button>
-</section>
+  <button class="theme" onclick="toggleDark()" id="theme">
+    🌙
+  </button>
+</header>
 
 <div class="container">
 
-<h2>🌷 Your Study Garden</h2>
+<section class="hero">
+
+  <small id="date"></small>
+
+  <h1 id="greeting">
+    Hey future nurse! 🩷
+  </h1>
+
+  <p>
+    Your little nursing-school space to study,
+    stay organized, and remember that you are
+    doing better than you think.
+  </p>
+
+  <div class="motivation">
+
+    <div class="motivation-title">
+      Today's Motivation
+    </div>
+
+    <div class="motivation-text" id="motivation">
+      You can do this.
+    </div>
+
+  </div>
+
+</section>
+
+
 <div class="grid">
 
-<div class="card"><div class="flower">🌷</div><h3>Pharm Garden</h3><p>Medications & pharmacology</p></div>
-<div class="card"><div class="flower">🌹</div><h3>Patho Garden</h3><p>Pathophysiology</p></div>
-<div class="card"><div class="flower">🌼</div><h3>Assessment Garden</h3><p>Health assessment</p></div>
-<div class="card"><div class="flower">🪻</div><h3>NCLEX Garden</h3><p>NCLEX-style questions</p></div>
-<div class="card"><div class="flower">🌻</div><h3>Fundamentals Garden</h3><p>Nursing fundamentals</p></div>
-<div class="card"><div class="flower">🌺</div><h3>Neuro Garden</h3><p>Neurological concepts</p></div>
-<div class="card"><div class="flower">🌿</div><h3>Respiratory Garden</h3><p>Respiratory concepts</p></div>
-<div class="card"><div class="flower">🌸</div><h3>Cardio Garden</h3><p>Cardiovascular concepts</p></div>
+
+<section class="card full">
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-number" id="minutes">
+        0
+      </div>
+      <div class="stat-label">
+        Study Minutes
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="streak">
+        1
+      </div>
+      <div class="stat-label">
+        Day Streak 🔥
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-number" id="completed">
+        0
+      </div>
+      <div class="stat-label">
+        Tasks Done
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>📚 Today's Tasks</h2>
+
+  <div class="task-input">
+
+    <input
+      id="taskInput"
+      type="text"
+      placeholder="Add a study task..."
+    >
+
+    <button
+      class="add"
+      onclick="addTask()"
+    >
+      Add
+    </button>
+
+  </div>
+
+  <div id="tasks"></div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>⏱️ Pomodoro Timer</h2>
+
+  <div class="timer">
+
+    <div id="timer" class="timer-display">
+      25:00
+    </div>
+
+    <button
+      class="start"
+      onclick="startTimer()"
+    >
+      Start
+    </button>
+
+    <button onclick="pauseTimer()">
+      Pause
+    </button>
+
+    <button onclick="resetTimer()">
+      Reset
+    </button>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>🎯 Study Goal</h2>
+
+  <p>
+    Today's goal:
+    <strong id="goalText">
+      0 / 120 minutes
+    </strong>
+  </p>
+
+  <div class="progress">
+    <div
+      class="progress-bar"
+      id="progress"
+    ></div>
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>💧 Water Tracker</h2>
+
+  <p style="color:#888;font-size:13px;">
+    Tap each glass when you drink.
+  </p>
+
+  <br>
+
+  <div class="water" id="water"></div>
+
+  <p>
+    <span id="waterCount">0</span>
+    / 8 glasses
+  </p>
+
+</section>
+
+
+<section class="card">
+
+  <h2>🧠 Nursing Quick Fact</h2>
+
+  <div class="fact">
+
+    <strong id="factTitle">
+      ADPIE
+    </strong>
+
+    <p id="fact">
+      Assessment, Diagnosis, Planning,
+      Implementation, Evaluation.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>💊 Medication Math</h2>
+
+  <div class="fact">
+
+    <strong>Basic Formula</strong>
+
+    <p>
+      Desired ÷ Have × Quantity
+    </p>
+
+    <p>
+      Example:
+      500 mg ordered,
+      250 mg/tablet available.
+    </p>
+
+    <strong>
+      500 ÷ 250 × 1 = 2 tablets
+    </strong>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>🤍 How are you feeling?</h2>
+
+  <div class="mood-buttons">
+
+    <button class="mood" onclick="mood(this)">
+      😭<br>Overwhelmed
+    </button>
+
+    <button class="mood" onclick="mood(this)">
+      😐<br>Okay
+    </button>
+
+    <button class="mood" onclick="mood(this)">
+      😊<br>Good
+    </button>
+
+    <button class="mood" onclick="mood(this)">
+      😴<br>Tired
+    </button>
+
+    <button class="mood" onclick="mood(this)">
+      🔥<br>Motivated
+    </button>
+
+    <button class="mood" onclick="mood(this)">
+      🥰<br>Happy
+    </button>
+
+  </div>
+
+</section>
+
+
+<section class="card full">
+
+  <h2>🌿 5-Minute Reset</h2>
+
+  <div class="fact">
+
+    <p>
+      Feeling overwhelmed? Try this:
+    </p>
+
+    <ol style="line-height:1.9;padding-left:20px;">
+      <li>Put your phone down.</li>
+      <li>Take five slow breaths.</li>
+      <li>Drink some water.</li>
+      <li>Pick ONE thing to work on.</li>
+      <li>Start for just five minutes.</li>
+    </ol>
+
+  </div>
+
+</section>
 
 </div>
 
-<div class="timer">
-<h2>⏱️ Study Timer</h2>
-<div id="time">00:00:00</div>
-<div class="controls">
-<button class="btn" onclick="start()">Start</button>
-<button class="btn" onclick="pause()">Pause</button>
-<button class="btn" onclick="reset()">Reset</button>
-</div>
-<p>Every minute you study helps your garden grow. 🌱</p>
-</div>
-
-<div class="garden">
-<h2>🌱 Your Garden Is Growing!</h2>
-<div class="plant" id="plant">🌱</div>
-<h3 id="stage">Seedling</h3>
-<p><span id="hours">0</span> study hours</p>
-<div class="bar"><div class="fill" id="fill"></div></div>
-<p id="message">Start studying to plant your first flower!</p>
-</div>
-
-<h2>💗 Study Tools</h2>
-<div class="grid">
-<div class="card"><div class="flower">🧠</div><h3>Ask My Twin</h3><p>Ask nursing questions.</p></div>
-<div class="card"><div class="flower">📋</div><h3>NCLEX Practice</h3><p>Practice with rationales.</p></div>
-<div class="card"><div class="flower">🗂️</div><h3>Flashcards</h3><p>Turn concepts into cards.</p></div>
-<div class="card"><div class="flower">📚</div><h3>Study Notes</h3><p>Organize your nursing notes.</p></div>
-</div>
-
-<div class="card" style="margin-top:35px">
-<h2>🌸 MyNurseTwin Plus</h2>
-<div class="price">$10<span style="font-size:16px">/month</span></div>
-<p>Unlimited AI study questions • Advanced NCLEX practice • Lecture tools • Progress tracking • Garden rewards</p>
-<button class="btn">Grow With Plus 🌷</button>
-</div>
-
-</div>
 
 <footer>
-🌸 MyNurseTwin • Your nursing study twin.
+  My Nurse Twin 🩺
+  <br>
+  Built for the future nurse who keeps going.
 </footer>
 
-<script>
-let seconds=0,timer=null;
-
-function display(){
-let h=Math.floor(seconds/3600);
-let m=Math.floor((seconds%3600)/60);
-let s=seconds%60;
-document.getElementById("time").textContent=
-[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");
-let hours=seconds/3600;
-document.getElementById("hours").textContent=hours.toFixed(1);
-
-let level=Math.min(hours/10*100,100);
-document.getElementById("fill").style.width=level+"%";
-
-let plant="🌱",stage="Seedling",msg="Start studying to plant your first flower!";
-if(hours>=1){plant="🌷";stage="Growing";msg="Your first flower is blooming!"}
-if(hours>=3){plant="🌼";stage="Blooming";msg="Your garden is getting beautiful!"}
-if(hours>=5){plant="🌸";stage="Thriving";msg="Your nursing knowledge is growing!"}
-if(hours>=10){plant="🌺";stage="Nursing Garden";msg="Look at your beautiful nursing garden!"}
-
-document.getElementById("plant").textContent=plant;
-document.getElementById("stage").textContent=stage;
-document.getElementById("message").textContent=msg;
-}
-
-function start(){
-if(!timer) timer=setInterval(()=>{seconds++;display()},1000);
-}
-function pause(){clearInterval(timer);timer=null}
-function reset(){pause();seconds=0;display()}
-display();
-</script>
-<div style="text-align:center;margin:30px 0">
-  <button onclick="startNCLEX()" style="padding:15px 25px;border:0;border-radius:15px;background:#d98f9f;color:white;font-size:18px">
-    🩺 Start NCLEX Practice
-  </button>
 </div>
 
+
 <script>
-function startNCLEX(){
-  const questions = [
-    {
-      q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
-      options: [
-        "Document the finding",
-        "Assess the client's airway and breathing",
-        "Offer the client water",
-        "Recheck the respiratory rate in 4 hours"
-      ],
-      answer: 1,
-      rationale: "A respiratory rate of 8/min indicates bradypnea. The nurse should assess airway and breathing immediately."
-    },
-    {
-      q: "Which finding should the nurse report immediately?",
-      options: [
-        "Heart rate of 78/min",
-        "Temperature of 37°C",
-        "Oxygen saturation of 88%",
-        "Respiratory rate of 16/min"
-      ],
-      answer: 2,
-      rationale: "An oxygen saturation of 88% is below the expected range and requires prompt assessment."
-    }
-  ];
 
-  let score = 0;
-  let current = 0;
+/* =========================
+   DAILY MOTIVATION
+========================= */
 
-  function showQuestion(){
-    const item = questions[current];
+var motivations = [
+  "You do not need to know everything today. You just need to keep learning.",
+  "One chapter at a time. One lecture at a time. One day at a time.",
+  "The nurse you want to become is being built by the work you are doing right now.",
+  "You are allowed to learn slowly. Understanding matters more than rushing.",
+  "A bad study day does not erase your progress.",
+  "You have already made it through things you once thought you couldn't.",
+  "Do not compare your chapter 3 to someone else's chapter 20.",
+  "Your future patients will benefit from the knowledge you are building today.",
+  "Small effort repeated every day becomes something much bigger.",
+  "You don't have to feel motivated to start. Start, and motivation can follow.",
+  "Your degree is not built in one night. It is built one ordinary day at a time.",
+  "You are becoming someone your younger self would be proud of.",
+  "Take the pressure off perfection. Focus on progress.",
+  "You are not behind. Your path is your own.",
+  "Study because future-you will thank present-you.",
+  "Even 20 focused minutes counts.",
+  "You can be tired and still be proud of yourself.",
+  "Your mistakes are part of learning, not proof that you cannot do this.",
+  "Keep going. You are closer than you think.",
+  "You don't need a perfect day. You need a productive next step.",
+  "The hard subjects will eventually become the things you explain to someone else.",
+  "You belong in the room you're working so hard to reach.",
+  "Give yourself the same patience you would give a patient.",
+  "Future nurse, breathe. You've got another day to grow.",
+  "Your effort counts even when nobody sees it.",
+  "Consistency will take you further than one huge study session.",
+  "You can reset at any moment. Today is not ruined.",
+  "Keep showing up for the dream.",
+  "You are learning how to care for others. Remember to care for yourself too.",
+  "One day you'll look back and realize these difficult semesters were building you."
+];
 
-    let answer = prompt(
-      "🩺 NCLEX Question " + (current + 1) + "\\n\\n" +
-      item.q + "\\n\\n" +
-      "A. " + item.options[0] + "\\n" +
-      "B. " + item.options[1] + "\\n" +
-      "C. " + item.options[2] + "\\n" +
-      "D. " + item.options[3] +
-      "\\n\\nType A, B, C, or D:"
-    );
+var today = new Date();
 
-    if (!answer) return;
+var dayNumber = Math.floor(
+  today.getTime() / 86400000
+);
 
-    const selected = answer.toUpperCase().charCodeAt(0) - 65;
+document.getElementById("motivation").innerText =
+  motivations[dayNumber % motivations.length];
 
-    if(selected === item.answer){
-      score++;
-      alert("✅ Correct!\\n\\n" + item.rationale);
-    } else {
-      alert(
-        "❌ Incorrect.\\n\\nCorrect answer: " +
-        String.fromCharCode(65 + item.answer) +
-        "\\n\\n" + item.rationale
-      );
-    }
 
-    current++;
+/* =========================
+   DATE
+========================= */
 
-    if(current < questions.length){
-      showQuestion();
-    } else {
-      alert("🌸 Quiz complete!\\n\\nYour score: " + score + "/" + questions.length);
-    }
-  }
+document.getElementById("date").innerText =
+  today.toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
 
-  showQuestion();
+
+/* =========================
+   GREETING
+========================= */
+
+var hour = today.getHours();
+
+if (hour < 12) {
+  document.getElementById("greeting").innerText =
+    "Good morning, future nurse! ☀️";
+} else if (hour < 18) {
+  document.getElementById("greeting").innerText =
+    "Good afternoon, future nurse! 🩷";
+} else {
+  document.getElementById("greeting").innerText =
+    "Good evening, future nurse! 🌙";
 }
-  const questions = [
-    {
-      q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
-      options: [
-        "Document the finding",
-        "Assess the client's airway and breathing",
-        "Offer the client water",
-        "Recheck the respiratory rate in 4 hours"
-      ],
-      answer: 1,
-      rationale: "A respiratory rate of 8/min indicates bradypnea. Airway and breathing should be assessed immediately."
-    }
-  ];
 
-  const item = questions[0];
-  const choice = prompt(
-    item.q +
-    "\\n\\nA. " + item.options[0] +
-    "\\nB. " + item.options[1] +
-    "\\nC. " + item.options[2] +
-    "\\nD. " + item.options[3] +
-    "\\n\\nType A, B, C, or D:"
+
+/* =========================
+   TASKS
+========================= */
+
+var tasks =
+  JSON.parse(
+    localStorage.getItem("nurseTwinTasks") || "[]"
   );
 
-  if (!choice) return;
+function saveTasks() {
 
-  const selected = choice.toUpperCase().charCodeAt(0) - 65;
+  localStorage.setItem(
+    "nurseTwinTasks",
+    JSON.stringify(tasks)
+  );
 
-  if (selected === item.answer) {
-    alert("✅ Correct!\\n\\n" + item.rationale);
-  } else {
-    alert("❌ Not quite.\\n\\nCorrect answer: B\\n\\n" + item.rationale);
-  }
 }
+
+function addTask() {
+
+  var input =
+    document.getElementById("taskInput");
+
+  var text =
+    input.value.trim();
+
+  if (text === "") {
+    return;
+  }
+
+  tasks.push({
+    text: text,
+    done: false
+  });
+
+  input.value = "";
+
+  saveTasks();
+  showTasks();
+
+}
+
+function showTasks() {
+
+  var container =
+    document.getElementById("tasks");
+
+  container.innerHTML = "";
+
+  var completed = 0;
+
+  for (var i = 0; i < tasks.length; i++) {
+
+    var task = tasks[i];
+
+    if (task.done) {
+      completed++;
+    }
+
+    var div =
+      document.createElement("div");
+
+    div.className =
+      "task" +
+      (task.done ? " done" : "");
+
+    var checkbox =
+      document.createElement("input");
+
+    checkbox.type = "checkbox";
+    checkbox.checked = task.done;
+
+    checkbox.onclick =
+      (function(index) {
+
+        return function() {
+
+          tasks[index].done =
+            !tasks[index].done;
+
+          saveTasks();
+          showTasks();
+
+        };
+
+      })(i);
+
+    var span =
+      document.createElement("span");
+
+    span.innerText = task.text;
+
+    var deleteButton =
+      document.createElement("button");
+
+    deleteButton.className = "delete";
+    deleteButton.innerText = "✕";
+
+    deleteButton.onclick =
+      (function(index) {
+
+        return function() {
+
+          tasks.splice(index, 1);
+
+          saveTasks();
+          showTasks();
+
+        };
+
+      })(i);
+
+    div.appendChild(checkbox);
+    div.appendChild(span);
+    div.appendChild(deleteButton);
+
+    container.appendChild(div);
+  }
+
+  document.getElementById("completed").innerText =
+    completed;
+}
+
+showTasks();
+
+
+/* =========================
+   POMODORO
+========================= */
+
+var seconds = 1500;
+var timerInterval = null;
+
+function displayTimer() {
+
+  var minutes =
+    Math.floor(seconds / 60);
+
+  var remaining =
+    seconds % 60;
+
+  document.getElementById("timer").innerText =
+    String(minutes).padStart(2,"0") +
+    ":" +
+    String(remaining).padStart(2,"0");
+
+}
+
+function startTimer() {
+
+  if (timerInterval !== null) {
+    return;
+  }
+
+  timerInterval =
+    setInterval(function() {
+
+      if (seconds > 0) {
+
+        seconds--;
+
+        displayTimer();
+
+      } else {
+
+        pauseTimer();
+
+        alert(
+          "Your study session is finished! Take a break. 🩷"
+        );
+
+        addStudyMinutes(25);
+
+        resetTimer();
+
+      }
+
+    }, 1000);
+
+}
+
+function pauseTimer() {
+
+  clearInterval(timerInterval);
+
+  timerInterval = null;
+
+}
+
+function resetTimer() {
+
+  pauseTimer();
+
+  seconds = 1500;
+
+  displayTimer();
+
+}
+
+displayTimer();
+
+
+/* =========================
+   STUDY MINUTES
+========================= */
+
+var studyMinutes =
+  Number(
+    localStorage.getItem("nurseTwinMinutes") || 0
+  );
+
+function addStudyMinutes(minutes) {
+
+  studyMinutes += minutes;
+
+  localStorage.setItem(
+    "nurseTwinMinutes",
+    studyMinutes
+  );
+
+  updateStudy();
+
+}
+
+function updateStudy() {
+
+  document.getElementById("minutes").innerText =
+    studyMinutes;
+
+  document.getElementById("goalText").innerText =
+    studyMinutes + " / 120 minutes";
+
+  var percentage =
+    Math.min(
+      (studyMinutes / 120) * 100,
+      100
+    );
+
+  document.getElementById("progress").style.width =
+    percentage + "%";
+
+}
+
+updateStudy();
+
+
+/* =========================
+   WATER
+========================= */
+
+var water =
+  Number(
+    localStorage.getItem("nurseTwinWater") || 0
+  );
+
+function drawWater() {
+
+  var container =
+    document.getElementById("water");
+
+  container.innerHTML = "";
+
+  for (var i = 0; i < 8; i++) {
+
+    var button =
+      document.createElement("button");
+
+    button.className =
+      "glass" +
+      (i < water ? " full" : "");
+
+    button.innerText =
+      i < water ? "💧" : "";
+
+    button.onclick =
+      (function(index) {
+
+        return function() {
+
+          water =
+            index < water
+            ? index
+            : index + 1;
+
+          localStorage.setItem(
+            "nurseTwinWater",
+            water
+          );
+
+          drawWater();
+
+        };
+
+      })(i);
+
+    container.appendChild(button);
+  }
+
+  document.getElementById("waterCount").innerText =
+    water;
+
+}
+
+drawWater();
+
+
+/* =========================
+   NURSING FACT
+========================= */
+
+var facts = [
+
+  ["ADPIE",
+   "Assessment, Diagnosis, Planning, Implementation, Evaluation."],
+
+  ["SBAR",
+   "Situation, Background, Assessment, Recommendation."],
+
+  ["ABCs",
+   "Airway, Breathing, Circulation is a common framework for prioritizing immediate concerns."],
+
+  ["Tachycardia",
+   "A heart rate above the expected range."],
+
+  ["Bradycardia",
+   "A heart rate below the expected range."],
+
+  ["Edema",
+   "Excess fluid accumulation in the interstitial tissues."],
+
+  ["SpO₂",
+   "Pulse oximetry estimates the percentage of hemoglobin carrying oxygen."],
+
+  ["GFR",
+   "Glomerular filtration rate is related to kidney filtration function."]
+
+];
+
+var factIndex =
+  dayNumber % facts.length;
+
+document.getElementById("factTitle").innerText =
+  facts[factIndex][0];
+
+document.getElementById("fact").innerText =
+  facts[factIndex][1];
+
+
+/* =========================
+   MOOD
+========================= */
+
+function mood(button) {
+
+  var buttons =
+    document.querySelectorAll(".mood");
+
+  for (var i = 0; i < buttons.length; i++) {
+
+    buttons[i].classList.remove("selected");
+
+  }
+
+  button.classList.add("selected");
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDark() {
+
+  document.body.classList.toggle("dark");
+
+  var dark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "nurseTwinDark",
+    dark
+  );
+
+  document.getElementById("theme").innerText =
+    dark ? "☀️" : "🌙";
+
+}
+
+if (
+  localStorage.getItem("nurseTwinDark")
+  === "true"
+) {
+
+  document.body.classList.add("dark");
+
+  document.getElementById("theme").innerText =
+    "☀️";
+
+}
+
+
+/* =========================
+   STREAK
+========================= */
+
+var lastVisit =
+  localStorage.getItem("nurseTwinLastVisit");
+
+var streak =
+  Number(
+    localStorage.getItem("nurseTwinStreak") || 1
+  );
+
+var todayKey =
+  today.toISOString().slice(0,10);
+
+if (lastVisit === null) {
+
+  localStorage.setItem(
+    "nurseTwinLastVisit",
+    todayKey
+  );
+
+} else if (lastVisit !== todayKey) {
+
+  var last =
+    new Date(lastVisit);
+
+  var current =
+    new Date(todayKey);
+
+  var difference =
+    Math.round(
+      (current - last) / 86400000
+    );
+
+  if (difference === 1) {
+
+    streak++;
+
+  } else if (difference > 1) {
+
+    streak = 1;
+
+  }
+
+  localStorage.setItem(
+    "nurseTwinLastVisit",
+    todayKey
+  );
+
+  localStorage.setItem(
+    "nurseTwinStreak",
+    streak
+  );
+
+}
+
+document.getElementById("streak").innerText =
+  streak;
+
 </script>
+
 </body>
 </html>
