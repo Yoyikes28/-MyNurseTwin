@@ -2,288 +2,2672 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MyNurseTwin 🌸</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#df82ad">
+<title>My Nurse Twin 🩺</title>
+
 <style>
 :root{
---cream:#fff8f4;--pink:#f5c8d2;--rose:#d98f9f;
---sage:#b9d5bd;--blue:#c5d2ed;--brown:#59433d;
+--bg:#fff7fb;
+--card:#fff;
+--text:#302733;
+--muted:#887988;
+--pink:#df82ad;
+--pink2:#f8d9e8;
+--purple:#9b82cf;
+--purple2:#eee6fa;
+--green:#79a982;
+--blue:#7aaed8;
+--yellow:#e7ba62;
+--red:#d87682;
+--border:#eadce7;
+--shadow:0 10px 30px rgba(90,45,85,.09);
 }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:var(--brown);
-font-family:Arial,sans-serif}
-header{padding:25px 7%;display:flex;justify-content:space-between;
-align-items:center;background:white}
-.logo{font-size:25px;font-weight:bold}
-.btn{background:var(--rose);color:white;border:0;border-radius:25px;
-padding:12px 20px;font-weight:bold}
-.hero{padding:55px 7%;text-align:center}
-.hero h1{font-size:44px;margin:10px}
-.hero p{font-size:18px}
-.container{max-width:1100px;margin:auto;padding:20px}
-h2{text-align:center}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px}
-.card{background:white;border-radius:22px;padding:22px;text-align:center;
-box-shadow:0 5px 20px #0000000b}
-.card:hover{transform:translateY(-3px)}
-.flower{font-size:40px}
-.timer{text-align:center;background:white;border-radius:25px;
-padding:30px;margin:35px 0}
-#time{font-size:55px;font-weight:bold;margin:15px}
-.controls button{margin:5px}
-.garden{background:#edf6ed;border-radius:25px;padding:30px;text-align:center}
-.plant{font-size:75px}
-.bar{height:15px;background:#ddd;border-radius:20px;overflow:hidden}
-.fill{height:100%;width:0;background:var(--sage)}
-.price{font-size:35px;font-weight:bold}
-footer{text-align:center;padding:40px;color:#88716a}
+
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:.25s;
+}
+
+body.dark{
+--bg:#17131a;
+--card:#241e27;
+--text:#fff3fb;
+--muted:#b9abbc;
+--border:#403442;
+--purple2:#32293d;
+--shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+button,input,textarea,select{font:inherit}
+
+button{cursor:pointer}
+
+.app{min-height:100vh;display:flex}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:245px;
+height:100vh;
+background:var(--card);
+border-right:1px solid var(--border);
+padding:24px 14px;
+z-index:50;
+}
+
+.logo{
+font-size:22px;
+font-weight:900;
+margin:4px 10px;
+}
+
+.logo small{
+display:block;
+font-size:12px;
+color:var(--pink);
+margin-top:4px;
+}
+
+.nav{
+display:flex;
+flex-direction:column;
+gap:6px;
+margin-top:25px;
+}
+
+.nav button{
+border:0;
+background:transparent;
+color:var(--text);
+padding:12px;
+border-radius:14px;
+text-align:left;
+font-weight:700;
+}
+
+.nav button:hover,
+.nav button.active{
+background:linear-gradient(135deg,var(--pink2),var(--purple2));
+color:var(--pink);
+}
+
+.main{
+margin-left:245px;
+width:calc(100% - 245px);
+padding:24px;
+max-width:1550px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.topbar h1{
+margin:0;
+font-size:28px;
+}
+
+.icon{
+width:44px;
+height:44px;
+border-radius:14px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+}
+
+.page{display:none}
+.page.active{display:block}
+
+.hero{
+padding:30px;
+border-radius:27px;
+margin-bottom:18px;
+background:linear-gradient(135deg,#f8dbe9,#eee4fa);
+position:relative;
+overflow:hidden;
+}
+
+.dark .hero{
+background:linear-gradient(135deg,#422b38,#332a42);
+}
+
+.hero h2{
+margin:0 0 8px;
+font-size:28px;
+}
+
+.hero p{
+margin:0;
+color:var(--muted);
+line-height:1.6;
+}
+
+.hero:after{
+content:"🌸";
+position:absolute;
+right:25px;
+bottom:-22px;
+font-size:100px;
+opacity:.15;
+}
+
+.motivation{
+margin-top:17px;
+padding:15px;
+border-radius:15px;
+background:rgba(255,255,255,.58);
+font-weight:700;
+}
+
+.grid{
+display:grid;
+gap:17px;
+}
+
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:21px;
+padding:20px;
+box-shadow:var(--shadow);
+}
+
+.card h3{margin-top:0}
+
+.muted{
+color:var(--muted);
+font-size:14px;
+line-height:1.6;
+}
+
+.stat{text-align:center}
+
+.stat-icon{font-size:27px}
+
+.number{
+font-size:30px;
+font-weight:900;
+color:var(--pink);
+margin:3px 0;
+}
+
+.primary{
+border:0;
+padding:11px 16px;
+border-radius:12px;
+font-weight:800;
+color:white;
+background:linear-gradient(135deg,var(--pink),var(--purple));
+}
+
+.secondary{
+border:0;
+padding:10px 14px;
+border-radius:11px;
+font-weight:750;
+color:var(--pink);
+background:var(--purple2);
+}
+
+.danger{
+border:0;
+padding:9px 12px;
+border-radius:10px;
+font-weight:700;
+color:var(--red);
+background:#fae1e5;
+}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+border:1px solid var(--border);
+border-radius:12px;
+background:var(--bg);
+color:var(--text);
+outline:none;
+}
+
+textarea{
+min-height:160px;
+resize:vertical;
+}
+
+label{
+display:block;
+font-size:13px;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.form{margin-bottom:14px}
+
+.progress{
+height:10px;
+border-radius:20px;
+background:var(--purple2);
+overflow:hidden;
+}
+
+.bar{
+height:100%;
+width:0;
+border-radius:20px;
+background:linear-gradient(90deg,var(--pink),var(--purple));
+transition:.5s;
+}
+
+/* TASKS */
+
+.task{
+display:flex;
+align-items:center;
+gap:10px;
+padding:13px 0;
+border-bottom:1px solid var(--border);
+}
+
+.task:last-child{border-bottom:0}
+
+.task input{width:auto}
+
+.task.done span{
+text-decoration:line-through;
+color:var(--muted);
+}
+
+/* TIMER */
+
+.timer{text-align:center}
+
+.timer-display{
+font-size:64px;
+font-weight:900;
+color:var(--pink);
+margin:14px;
+}
+
+.timer-buttons{
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+}
+
+/* WATER */
+
+.water-grid{
+display:grid;
+grid-template-columns:repeat(8,1fr);
+gap:7px;
+}
+
+.water{
+height:55px;
+border-radius:14px;
+border:1px solid var(--border);
+background:var(--bg);
+font-size:21px;
+}
+
+.water.full{background:#dff0fb}
+
+/* SELF CARE */
+
+.self{
+display:flex;
+align-items:center;
+gap:12px;
+padding:13px 0;
+border-bottom:1px solid var(--border);
+}
+
+.self:last-child{border-bottom:0}
+
+.self input{
+width:20px;
+height:20px;
+}
+
+/* GARDEN */
+
+.garden{
+height:430px;
+position:relative;
+overflow:hidden;
+border-radius:25px;
+background:
+linear-gradient(
+#dff3ff 0%,
+#effaff 57%,
+#b8dfa9 57%,
+#98cb8a 100%
+);
+}
+
+.dark .garden{
+background:
+linear-gradient(
+#25313d 0%,
+#293946 57%,
+#30452f 57%,
+#344c31 100%
+);
+}
+
+.sun{
+position:absolute;
+right:25px;
+top:20px;
+font-size:52px;
+}
+
+.cloud{
+position:absolute;
+font-size:52px;
+opacity:.4;
+}
+
+.cloud1{left:30px;top:40px}
+.cloud2{left:220px;top:90px}
+
+.garden-level{
+position:absolute;
+top:18px;
+left:18px;
+background:rgba(255,255,255,.82);
+padding:10px 14px;
+border-radius:14px;
+font-weight:800;
+z-index:5;
+}
+
+.flowers{
+position:absolute;
+bottom:30px;
+left:0;
+right:0;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+padding:20px;
+}
+
+.flower{
+font-size:42px;
+text-align:center;
+animation:sway 3s ease-in-out infinite;
+transform-origin:bottom;
+}
+
+.flower small{
+display:block;
+font-size:10px;
+color:#385c3c;
+font-weight:800;
+}
+
+.dark .flower small{color:#d8f2d2}
+
+@keyframes sway{
+0%,100%{transform:rotate(-3deg)}
+50%{transform:rotate(4deg)}
+}
+
+/* XP */
+
+.xp{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.level{
+width:70px;
+height:70px;
+border-radius:50%;
+background:linear-gradient(135deg,var(--pink),var(--purple));
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:21px;
+font-weight:900;
+}
+
+/* ACHIEVEMENTS */
+
+.achievement{
+display:flex;
+align-items:center;
+gap:13px;
+padding:14px;
+background:var(--bg);
+border:1px solid var(--border);
+border-radius:15px;
+margin-bottom:9px;
+}
+
+.locked{opacity:.42}
+
+.achievement-icon{font-size:30px}
+
+/* FLASHCARDS */
+
+.flashcard{
+min-height:220px;
+border-radius:22px;
+background:linear-gradient(135deg,var(--pink2),var(--purple2));
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:25px;
+cursor:pointer;
+}
+
+.front{
+font-size:23px;
+font-weight:900;
+}
+
+.back{
+display:none;
+font-size:20px;
+font-weight:800;
+color:var(--pink);
+}
+
+.flashcard.show .front{display:none}
+.flashcard.show .back{display:block}
+
+/* PRO */
+
+.pro-card{
+background:
+linear-gradient(
+135deg,
+#f6c6dc,
+#dcd0f5
+);
+border:0;
+position:relative;
+overflow:hidden;
+}
+
+.dark .pro-card{
+background:
+linear-gradient(
+135deg,
+#4a2e40,
+#39304e
+);
+}
+
+.pro-price{
+font-size:42px;
+font-weight:900;
+}
+
+.pro-price span{
+font-size:15px;
+color:var(--muted);
+}
+
+.pro-list{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin:18px 0;
+}
+
+.pro-feature{
+padding:10px;
+border-radius:12px;
+background:rgba(255,255,255,.45);
+}
+
+/* AI */
+
+.ai-output{
+margin-top:15px;
+padding:20px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+white-space:pre-wrap;
+line-height:1.7;
+min-height:140px;
+}
+
+/* TOAST */
+
+.toast{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:999;
+padding:15px 18px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:15px;
+box-shadow:var(--shadow);
+transform:translateY(100px);
+opacity:0;
+transition:.3s;
+}
+
+.toast.show{
+transform:translateY(0);
+opacity:1;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+.g4{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:1fr 1fr}
+
+}
+
+@media(max-width:700px){
+
+.sidebar{
+position:fixed;
+top:auto;
+bottom:0;
+left:0;
+width:100%;
+height:72px;
+padding:5px;
+border-right:0;
+border-top:1px solid var(--border);
+}
+
+.logo{display:none}
+
+.nav{
+height:100%;
+margin:0;
+flex-direction:row;
+justify-content:space-around;
+align-items:center;
+}
+
+.nav button{
+font-size:10px;
+padding:7px 4px;
+text-align:center;
+}
+
+.main{
+margin-left:0;
+width:100%;
+padding:15px 13px 90px;
+}
+
+.g2,.g3,.g4{
+grid-template-columns:1fr;
+}
+
+.hero{
+padding:23px;
+}
+
+.hero h2{
+font-size:23px;
+}
+
+.topbar h1{
+font-size:21px;
+}
+
+.water-grid{
+grid-template-columns:repeat(4,1fr);
+}
+
+.pro-list{
+grid-template-columns:1fr;
+}
+
+.garden{
+height:400px;
+}
+
+}
+
+/* CONFETTI */
+
+.confetti{
+position:fixed;
+top:-20px;
+z-index:9999;
+font-size:24px;
+animation:fall 2.5s linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(700deg);
+opacity:0;
+}
+}
+
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">🌸 MyNurseTwin</div>
-<button class="btn">Start Studying</button>
-</header>
+<div class="app">
 
-<section class="hero">
-<h1>Your nursing study twin. 🌷</h1>
-<p>Study a little. Grow a lot. Become the nurse you’re working toward.</p>
-<button class="btn">🌱 Grow My Garden</button>
+<aside class="sidebar">
+
+<div class="logo">
+🩺 My Nurse Twin
+<small>Your nursing-school bestie</small>
+</div>
+
+<nav class="nav">
+
+<button class="active" onclick="go('home',this)">
+🏠<br>Home
+</button>
+
+<button onclick="go('garden',this)">
+🌸<br>Garden
+</button>
+
+<button onclick="go('study',this)">
+⏱️<br>Study
+</button>
+
+<button onclick="go('pharm',this)">
+💊<br>Pharm
+</button>
+
+<button onclick="go('patho',this)">
+🫀<br>Patho
+</button>
+
+<button onclick="go('cards',this)">
+🃏<br>Cards
+</button>
+
+<button onclick="go('care',this)">
+💗<br>Care
+</button>
+
+<button onclick="go('pro',this)">
+✨<br>Pro
+</button>
+
+</nav>
+
+</aside>
+
+
+<main class="main">
+
+<div class="topbar">
+
+<h1 id="title">
+My Nurse Twin 🩺
+</h1>
+
+<button
+class="icon"
+onclick="toggleDark()"
+id="theme"
+>
+🌙
+</button>
+
+</div>
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<h2 id="greeting">
+Hey future nurse 🩺
+</h2>
+
+<p id="date"></p>
+
+<div class="motivation" id="motivation"></div>
+
+</div>
+
+
+<div class="grid g4">
+
+<div class="card stat">
+<div class="stat-icon">📚</div>
+<div class="number" id="studyStat">0</div>
+<div class="muted">Study minutes</div>
+</div>
+
+<div class="card stat">
+<div class="stat-icon">🔥</div>
+<div class="number" id="streakStat">0</div>
+<div class="muted">Day streak</div>
+</div>
+
+<div class="card stat">
+<div class="stat-icon">💧</div>
+<div class="number" id="waterStat">0/8</div>
+<div class="muted">Water</div>
+</div>
+
+<div class="card stat">
+<div class="stat-icon">🌱</div>
+<div class="number" id="xpStat">0</div>
+<div class="muted">Garden XP</div>
+</div>
+
+</div>
+
+
+<div class="card" style="margin-top:18px">
+
+<div style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+">
+
+<div>
+<h3 style="margin:0">
+🎯 Today's Study Goal
+</h3>
+
+<p class="muted" style="margin:4px 0">
+Every minute grows your garden.
+</p>
+</div>
+
+<b id="goalText">
+0 / 60
+</b>
+
+</div>
+
+<div class="progress" style="margin-top:13px">
+<div class="bar" id="goalBar"></div>
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h2>✅ Today's Tasks</h2>
+</div>
+
+<div class="card">
+
+<div style="display:flex;gap:8px">
+
+<input
+id="taskInput"
+placeholder="Review immune system..."
+>
+
+<button class="primary" onclick="addTask()">
+Add
+</button>
+
+</div>
+
+<div id="tasks"></div>
+
+</div>
+
+
+<div class="section-title">
+<h2>💗 Quick Self-Care</h2>
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>💧 Hydration</h3>
+<p class="muted">
+Keep your brain hydrated while studying.
+</p>
+<button class="secondary" onclick="go('care')">
+Check Water
+</button>
+</div>
+
+<div class="card">
+<h3>🌷 Self-care</h3>
+<p class="muted">
+Your health matters too.
+</p>
+<button class="secondary" onclick="go('care')">
+Check In
+</button>
+</div>
+
+<div class="card">
+<h3>🌸 Garden</h3>
+<p class="muted">
+See what your study time has grown.
+</p>
+<button class="secondary" onclick="go('garden')">
+View Garden
+</button>
+</div>
+
+</div>
+
 </section>
 
-<div class="container">
 
-<h2>🌷 Your Study Garden</h2>
-<div class="grid">
+<!-- GARDEN -->
 
-<div class="card"><div class="flower">🌷</div><h3>Pharm Garden</h3><p>Medications & pharmacology</p></div>
-<div class="card"><div class="flower">🌹</div><h3>Patho Garden</h3><p>Pathophysiology</p></div>
-<div class="card"><div class="flower">🌼</div><h3>Assessment Garden</h3><p>Health assessment</p></div>
-<div class="card"><div class="flower">🪻</div><h3>NCLEX Garden</h3><p>NCLEX-style questions</p></div>
-<div class="card"><div class="flower">🌻</div><h3>Fundamentals Garden</h3><p>Nursing fundamentals</p></div>
-<div class="card"><div class="flower">🌺</div><h3>Neuro Garden</h3><p>Neurological concepts</p></div>
-<div class="card"><div class="flower">🌿</div><h3>Respiratory Garden</h3><p>Respiratory concepts</p></div>
-<div class="card"><div class="flower">🌸</div><h3>Cardio Garden</h3><p>Cardiovascular concepts</p></div>
+<section id="garden" class="page">
+
+<div class="hero">
+
+<h2>🌸 Your Study Garden</h2>
+
+<p>
+Study more → earn XP → unlock flowers → build your dream garden.
+</p>
 
 </div>
 
-<div class="timer">
-<h2>⏱️ Study Timer</h2>
-<div id="time">00:00:00</div>
-<div class="controls">
-<button class="btn" onclick="start()">Start</button>
-<button class="btn" onclick="pause()">Pause</button>
-<button class="btn" onclick="reset()">Reset</button>
-</div>
-<p>Every minute you study helps your garden grow. 🌱</p>
+
+<div class="card">
+
+<div class="xp">
+
+<div class="level" id="level">
+1
 </div>
 
-<div class="garden">
-<h2>🌱 Your Garden Is Growing!</h2>
-<div class="plant" id="plant">🌱</div>
-<h3 id="stage">Seedling</h3>
-<p><span id="hours">0</span> study hours</p>
-<div class="bar"><div class="fill" id="fill"></div></div>
-<p id="message">Start studying to plant your first flower!</p>
-</div>
+<div style="flex:1">
 
-<h2>💗 Study Tools</h2>
-<div class="grid">
-<div class="card"><div class="flower">🧠</div><h3>Ask My Twin</h3><p>Ask nursing questions.</p></div>
-<div class="card"><div class="flower">📋</div><h3>NCLEX Practice</h3><p>Practice with rationales.</p></div>
-<div class="card"><div class="flower">🗂️</div><h3>Flashcards</h3><p>Turn concepts into cards.</p></div>
-<div class="card"><div class="flower">📚</div><h3>Study Notes</h3><p>Organize your nursing notes.</p></div>
-</div>
+<h3 style="margin:0" id="levelText">
+Garden Level 1
+</h3>
 
-<div class="card" style="margin-top:35px">
-<h2>🌸 MyNurseTwin Plus</h2>
-<div class="price">$10<span style="font-size:16px">/month</span></div>
-<p>Unlimited AI study questions • Advanced NCLEX practice • Lecture tools • Progress tracking • Garden rewards</p>
-<button class="btn">Grow With Plus 🌷</button>
+<p class="muted" id="xpText">
+0 XP
+</p>
+
+<div class="progress">
+<div class="bar" id="xpBar"></div>
 </div>
 
 </div>
 
-<footer>
-🌸 MyNurseTwin • Your nursing study twin.
-</footer>
+</div>
+
+</div>
+
+
+<div class="garden" style="margin-top:18px">
+
+<div class="sun">☀️</div>
+
+<div class="cloud cloud1">☁️</div>
+
+<div class="cloud cloud2">☁️</div>
+
+<div class="garden-level">
+🌱 <span id="stage">Starting Garden</span>
+</div>
+
+<div class="flowers" id="flowers"></div>
+
+</div>
+
+
+<div class="section-title">
+<h2>🌷 Flowers You Can Unlock</h2>
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🌼 Daisy</h3>
+<p class="muted">30 study minutes</p>
+</div>
+
+<div class="card">
+<h3>🌷 Tulip</h3>
+<p class="muted">2 study hours</p>
+</div>
+
+<div class="card">
+<h3>🌹 Rose</h3>
+<p class="muted">5 study hours</p>
+</div>
+
+<div class="card">
+<h3>🌻 Sunflower</h3>
+<p class="muted">10 study hours</p>
+</div>
+
+<div class="card">
+<h3>💜 Lavender</h3>
+<p class="muted">20 study hours</p>
+</div>
+
+<div class="card">
+<h3>🌸 Cherry Blossom</h3>
+<p class="muted">40 study hours</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STUDY -->
+
+<section id="study" class="page">
+
+<div class="hero">
+
+<h2>⏱️ Focus Room</h2>
+
+<p>
+Your timer turns study time into garden growth.
+</p>
+
+</div>
+
+
+<div class="grid g2">
+
+<div class="card" style="text-align:center">
+
+<h3>🍅 Focus Timer</h3>
+
+<div class="timer-display" id="timer">
+25:00
+</div>
+
+<div class="timer-buttons">
+
+<button class="secondary" onclick="setTimer(25)">
+25 min
+</button>
+
+<button class="secondary" onclick="setTimer(50)">
+50 min
+</button>
+
+<button class="secondary" onclick="setTimer(90)">
+90 min
+</button>
+
+</div>
+
+<div class="timer-buttons" style="margin-top:12px">
+
+<button class="primary" onclick="startTimer()">
+▶ Start
+</button>
+
+<button class="secondary" onclick="pauseTimer()">
+⏸ Pause
+</button>
+
+<button class="secondary" onclick="resetTimer()">
+↺ Reset
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>📚 Add Study Time</h3>
+
+<p class="muted">
+Already studied? Add your time manually.
+</p>
+
+<input
+id="manual"
+type="number"
+placeholder="Minutes"
+/>
+
+<button
+class="primary"
+style="margin-top:10px"
+onclick="manualStudy()"
+>
+Add Study Time
+</button>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h2>🏆 Achievements</h2>
+</div>
+
+<div class="grid g2" id="achievements"></div>
+
+</section>
+
+
+<!-- PHARM -->
+
+<section id="pharm" class="page">
+
+<div class="hero">
+
+<h2>💊 Pharmacology</h2>
+
+<p>
+Your pharm study hub.
+</p>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>⏳ Half-Life</h3>
+<p class="muted">
+Time required for drug concentration to decrease by 50%.
+</p>
+</div>
+
+<div class="card">
+<h3>🧬 Pharmacokinetics</h3>
+<p class="muted">
+ADME: absorption, distribution, metabolism and excretion.
+</p>
+</div>
+
+<div class="card">
+<h3>🧪 Pharmacodynamics</h3>
+<p class="muted">
+What the drug does to the body.
+</p>
+</div>
+
+<div class="card">
+<h3>🍊 First-Pass Effect</h3>
+<p class="muted">
+Metabolism before an orally absorbed drug reaches systemic circulation.
+</p>
+</div>
+
+<div class="card">
+<h3>💊 10 Rights</h3>
+<p class="muted">
+Use your course's required medication-administration rights when studying and practicing.
+</p>
+</div>
+
+<div class="card">
+<h3>🧮 Medication Math</h3>
+<p class="muted">
+Ordered ÷ Available × Quantity.
+</p>
+</div>
+
+</div>
+
+
+<div class="section-title">
+<h2>🧮 Medication Calculator</h2>
+</div>
+
+<div class="card">
+
+<div class="grid g3">
+
+<div>
+<label>Ordered</label>
+<input id="ordered" type="number" step="any">
+</div>
+
+<div>
+<label>Available</label>
+<input id="available" type="number" step="any">
+</div>
+
+<div>
+<label>Quantity</label>
+<input id="quantity" type="number" step="any" value="1">
+</div>
+
+</div>
+
+<button
+class="primary"
+style="margin-top:12px"
+onclick="calculateDose()"
+>
+Calculate
+</button>
+
+<div class="motivation" id="dose">
+Enter your values.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PATHO -->
+
+<section id="patho" class="page">
+
+<div class="hero">
+
+<h2>🫀 Pathophysiology</h2>
+
+<p>
+Understand the mechanism, not just the definition.
+</p>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🧬 Cellular Injury</h3>
+<p class="muted">
+Occurs when stress exceeds the cell's ability to adapt.
+</p>
+</div>
+
+<div class="card">
+<h3>💥 Necrosis</h3>
+<p class="muted">
+Uncontrolled cell death commonly associated with inflammation.
+</p>
+</div>
+
+<div class="card">
+<h3>🔥 Inflammation</h3>
+<p class="muted">
+Protective response to injury, infection or harmful stimuli.
+</p>
+</div>
+
+<div class="card">
+<h3>💧 Edema</h3>
+<p class="muted">
+Excess fluid in the interstitial space.
+</p>
+</div>
+
+<div class="card">
+<h3>🫘 GFR</h3>
+<p class="muted">
+Describes the rate at which the kidneys filter blood into the nephron.
+</p>
+</div>
+
+<div class="card">
+<h3>💦 ADH</h3>
+<p class="muted">
+Promotes water reabsorption by the kidneys.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FLASHCARDS -->
+
+<section id="cards" class="page">
+
+<div class="hero">
+
+<h2>🃏 Flashcard Lab</h2>
+
+<p>
+Make your own nursing flashcards.
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="grid g3">
+
+<div>
+<label>Subject</label>
+<select id="cardSubject">
+<option>Pharmacology</option>
+<option>Pathophysiology</option>
+<option>Nursing</option>
+<option>Health Assessment</option>
+</select>
+</div>
+
+<div>
+<label>Question</label>
+<input id="question" placeholder="What is half-life?">
+</div>
+
+<div>
+<label>Answer</label>
+<input id="answer" placeholder="Time for concentration to decrease 50%.">
+</div>
+
+</div>
+
+<button
+class="primary"
+style="margin-top:12px"
+onclick="addCard()"
+>
+＋ Add Flashcard
+</button>
+
+</div>
+
+<div class="section-title">
+<h2>Your Flashcards</h2>
+</div>
+
+<div id="cards"></div>
+
+</section>
+
+
+<!-- SELF CARE -->
+
+<section id="care" class="page">
+
+<div class="hero">
+
+<h2>💗 Self-Care Check-In</h2>
+
+<p>
+You are a nursing student — not a machine.
+</p>
+
+</div>
+
+<div class="grid g2">
+
+<div class="card">
+
+<h3>🌷 Today's Check-In</h3>
+
+<div id="selfCare"></div>
+
+</div>
+
+
+<div class="card">
+
+<h3>💧 Water</h3>
+
+<p class="muted">
+Goal: 8 glasses
+</p>
+
+<div class="water-grid" id="water"></div>
+
+<p style="text-align:center;font-weight:800" id="waterText">
+0 / 8 glasses
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card" style="margin-top:18px">
+
+<h3>😊 Mood</h3>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+
+<button class="secondary" onclick="mood('😊')">😊</button>
+<button class="secondary" onclick="mood('🙂')">🙂</button>
+<button class="secondary" onclick="mood('😐')">😐</button>
+<button class="secondary" onclick="mood('😩')">😩</button>
+<button class="secondary" onclick="mood('😭')">😭</button>
+<button class="secondary" onclick="mood('🥹')">🥹</button>
+
+</div>
+
+<p class="muted" id="moodText"></p>
+
+</div>
+
+
+<div class="card" style="margin-top:18px">
+
+<h3>📝 Private Check-In</h3>
+
+<textarea
+id="journal"
+placeholder="How are you actually doing?"
+></textarea>
+
+<button
+class="primary"
+style="margin-top:10px"
+onclick="saveJournal()"
+>
+Save Check-In
+</button>
+
+<p class="muted" id="journalStatus"></p>
+
+</div>
+
+</section>
+
+
+<!-- PRO -->
+
+<section id="pro" class="page">
+
+<div class="hero">
+
+<h2>✨ My Nurse Twin Pro</h2>
+
+<p>
+More studying. More growing. Less chaos.
+</p>
+
+</div>
+
+
+<div class="card pro-card">
+
+<div style="font-size:40px">
+🌸🩺🌷
+</div>
+
+<h2>
+My Nurse Twin Pro
+</h2>
+
+<div class="pro-price">
+$10 <span>/ month</span>
+</div>
+
+<p class="muted">
+Built for nursing students who want their study life
+to feel organized, motivating and actually fun.
+</p>
+
+
+<div class="pro-list">
+
+<div class="pro-feature">🌱 Advanced Study Garden</div>
+<div class="pro-feature">📊 Study Analytics</div>
+<div class="pro-feature">🤖 AI Study Tools</div>
+<div class="pro-feature">🃏 Smart Flashcards</div>
+<div class="pro-feature">📝 AI Practice Quizzes</div>
+<div class="pro-feature">💊 Pharm Tutor</div>
+<div class="pro-feature">🫀 Patho Tutor</div>
+<div class="pro-feature">🩺 Nursing Tutor</div>
+<div class="pro-feature">🏆 Exclusive Achievements</div>
+<div class="pro-feature">🌸 Special Flowers</div>
+<div class="pro-feature">🎯 Advanced Goals</div>
+<div class="pro-feature">💗 Wellness Tracking</div>
+
+</div>
+
+
+<button
+class="primary"
+style="width:100%;font-size:16px"
+onclick="startPro()"
+id="proButton"
+>
+✨ Try Pro
+</button>
+
+<p
+class="muted"
+style="text-align:center;margin-top:12px"
+id="proStatus"
+>
+Pro preview mode
+</p>
+
+</div>
+
+
+<div class="section-title">
+<h2>🌷 What Pro Unlocks</h2>
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🌸 Rare Flowers</h3>
+<p class="muted">
+Unlock special flowers as your study hours increase.
+</p>
+</div>
+
+<div class="card">
+<h3>📊 Analytics</h3>
+<p class="muted">
+Track your study minutes, streaks and progress.
+</p>
+</div>
+
+<div class="card">
+<h3>🤖 AI Study Buddy</h3>
+<p class="muted">
+Turn nursing notes into study materials.
+</p>
+</div>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+
+<div class="toast" id="toast"></div>
+
 
 <script>
-let seconds=0,timer=null;
 
-function display(){
-let h=Math.floor(seconds/3600);
-let m=Math.floor((seconds%3600)/60);
-let s=seconds%60;
-document.getElementById("time").textContent=
-[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");
-let hours=seconds/3600;
-document.getElementById("hours").textContent=hours.toFixed(1);
+/* =====================================================
+   DATA
+===================================================== */
 
-let level=Math.min(hours/10*100,100);
-document.getElementById("fill").style.width=level+"%";
+const KEY="my_nurse_twin_final";
 
-let plant="🌱",stage="Seedling",msg="Start studying to plant your first flower!";
-if(hours>=1){plant="🌷";stage="Growing";msg="Your first flower is blooming!"}
-if(hours>=3){plant="🌼";stage="Blooming";msg="Your garden is getting beautiful!"}
-if(hours>=5){plant="🌸";stage="Thriving";msg="Your nursing knowledge is growing!"}
-if(hours>=10){plant="🌺";stage="Nursing Garden";msg="Look at your beautiful nursing garden!"}
+const defaults={
+study:0,
+xp:0,
+streak:0,
+lastStudy:"",
+water:0,
+mood:"",
+tasks:[],
+cards:[],
+journal:"",
+dark:false,
+pro:false,
+self:{
+sleep:false,
+food:false,
+shower:false,
+movement:false,
+skincare:false,
+break:false,
+meds:false
+}
+};
 
-document.getElementById("plant").textContent=plant;
-document.getElementById("stage").textContent=stage;
-document.getElementById("message").textContent=msg;
+let data=
+JSON.parse(localStorage.getItem(KEY))
+||JSON.parse(JSON.stringify(defaults));
+
+
+function save(){
+localStorage.setItem(KEY,JSON.stringify(data));
 }
 
-function start(){
-if(!timer) timer=setInterval(()=>{seconds++;display()},1000);
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function go(id,button){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+document.querySelectorAll(".nav button")
+.forEach(b=>b.classList.remove("active"));
+
+if(button)button.classList.add("active");
+
+const titles={
+home:"My Nurse Twin 🩺",
+garden:"🌸 Study Garden",
+study:"⏱️ Focus Room",
+pharm:"💊 Pharmacology",
+patho:"🫀 Pathophysiology",
+cards:"🃏 Flashcards",
+care:"💗 Self-Care",
+pro:"✨ My Nurse Twin Pro"
+};
+
+document.getElementById("title")
+.textContent=titles[id];
+
+updateAll();
+
 }
-function pause(){clearInterval(timer);timer=null}
-function reset(){pause();seconds=0;display()}
-display();
-</script>
-<div style="text-align:center;margin:30px 0">
-  <button onclick="startNCLEX()" style="padding:15px 25px;border:0;border-radius:15px;background:#d98f9f;color:white;font-size:18px">
-    🩺 Start NCLEX Practice
-  </button>
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleDark(){
+
+data.dark=!data.dark;
+
+document.body.classList.toggle(
+"dark",
+data.dark
+);
+
+document.getElementById("theme")
+.textContent=data.dark?"☀️":"🌙";
+
+save();
+
+}
+
+
+/* =====================================================
+   DAILY
+===================================================== */
+
+const quotes=[
+"Small progress is still progress. 🌸",
+"One concept at a time, future nurse.",
+"Consistency beats panic studying.",
+"You are allowed to learn slowly.",
+"Your future patients will benefit from the knowledge you're building.",
+"Study a little. Rest a little. Repeat.",
+"Future you will be proud you kept going.",
+"Progress > perfection.",
+"Take a breath. Then take the next step.",
+"Your garden cannot grow if you never plant the seeds. 🌱"
+];
+
+function setupDaily(){
+
+const now=new Date();
+
+let greeting="Good morning";
+
+if(now.getHours()>=12)greeting="Good afternoon";
+if(now.getHours()>=18)greeting="Good evening";
+
+document.getElementById("greeting")
+.textContent=greeting+", future nurse 🩺";
+
+document.getElementById("date")
+.textContent=now.toLocaleDateString(
+undefined,
+{
+weekday:"long",
+month:"long",
+day:"numeric",
+year:"numeric"
+});
+
+const day=Math.floor(
+new Date(
+now.getFullYear(),
+now.getMonth(),
+now.getDate()
+).getTime()/86400000
+);
+
+document.getElementById("motivation")
+.textContent="💗 "+quotes[day%quotes.length];
+
+}
+
+
+/* =====================================================
+   TASKS
+===================================================== */
+
+function addTask(){
+
+const input=document.getElementById("taskInput");
+
+const text=input.value.trim();
+
+if(!text)return;
+
+data.tasks.push({
+id:Date.now(),
+text,
+done:false
+});
+
+input.value="";
+
+save();
+
+renderTasks();
+
+}
+
+
+function toggleTask(id){
+
+const task=data.tasks.find(t=>t.id===id);
+
+if(task)task.done=!task.done;
+
+save();
+
+renderTasks();
+
+}
+
+
+function deleteTask(id){
+
+data.tasks=data.tasks.filter(
+t=>t.id!==id
+);
+
+save();
+
+renderTasks();
+
+}
+
+
+function renderTasks(){
+
+const box=document.getElementById("tasks");
+
+if(!data.tasks.length){
+
+box.innerHTML=
+`<p class="muted">
+No tasks yet. Add your first study task.
+</p>`;
+
+return;
+}
+
+box.innerHTML=data.tasks.map(t=>`
+
+<div class="task ${t.done?"done":""}">
+
+<input
+type="checkbox"
+${t.done?"checked":""}
+onchange="toggleTask(${t.id})"
+>
+
+<span style="flex:1">
+${safe(t.text)}
+</span>
+
+<button
+class="danger"
+onclick="deleteTask(${t.id})"
+>
+×
+</button>
+
 </div>
 
-<script>
-function startNCLEX(){
-  const question = {
-    q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
-    options: [
-      "Document the finding",
-      "Assess the client's airway and breathing",
-      "Offer the client water",
-      "Recheck the respiratory rate in 4 hours"
-    ],
-    answer: 1,
-    rationale: "A respiratory rate of 8/min indicates bradypnea. The nurse should assess airway and breathing immediately."
-  };
+`).join("");
 
-  const answer = prompt(
-    "🩺 NCLEX Practice\\n\\n" +
-    question.q +
-    "\\n\\nA. " + question.options[0] +
-    "\\nB. " + question.options[1] +
-    "\\nC. " + question.options[2] +
-    "\\nD. " + question.options[3] +
-    "\\n\\nType A, B, C, or D:"
-  );
-
-  if (!answer) return;
-
-  const selected = answer.toUpperCase().charCodeAt(0) - 65;
-
-  if (selected === question.answer) {
-    alert("✅ Correct!\\n\\n" + question.rationale);
-  } else {
-    alert("❌ Incorrect.\\n\\nCorrect answer: B\\n\\n" + question.rationale);
-  }
 }
-  const questions = [
-    {
-      q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
-      options: [
-        "Document the finding",
-        "Assess the client's airway and breathing",
-        "Offer the client water",
-        "Recheck the respiratory rate in 4 hours"
-      ],
-      answer: 1,
-      rationale: "A respiratory rate of 8/min indicates bradypnea. The nurse should assess airway and breathing immediately."
-    },
-    {
-      q: "Which finding should the nurse report immediately?",
-      options: [
-        "Heart rate of 78/min",
-        "Temperature of 37°C",
-        "Oxygen saturation of 88%",
-        "Respiratory rate of 16/min"
-      ],
-      answer: 2,
-      rationale: "An oxygen saturation of 88% is below the expected range and requires prompt assessment."
-    }
-  ];
 
-  let score = 0;
-  let current = 0;
 
-  function showQuestion(){
-    const item = questions[current];
+/* =====================================================
+   STUDY
+===================================================== */
 
-    let answer = prompt(
-      "🩺 NCLEX Question " + (current + 1) + "\\n\\n" +
-      item.q + "\\n\\n" +
-      "A. " + item.options[0] + "\\n" +
-      "B. " + item.options[1] + "\\n" +
-      "C. " + item.options[2] + "\\n" +
-      "D. " + item.options[3] +
-      "\\n\\nType A, B, C, or D:"
-    );
+function addStudy(minutes){
 
-    if (!answer) return;
+minutes=Number(minutes);
 
-    const selected = answer.toUpperCase().charCodeAt(0) - 65;
+if(!minutes||minutes<=0)return;
 
-    if(selected === item.answer){
-      score++;
-      alert("✅ Correct!\\n\\n" + item.rationale);
-    } else {
-      alert(
-        "❌ Incorrect.\\n\\nCorrect answer: " +
-        String.fromCharCode(65 + item.answer) +
-        "\\n\\n" + item.rationale
-      );
-    }
+data.study+=minutes;
 
-    current++;
+data.xp+=minutes;
 
-    if(current < questions.length){
-      showQuestion();
-    } else {
-      alert("🌸 Quiz complete!\\n\\nYour score: " + score + "/" + questions.length);
-    }
-  }
+updateStreak();
 
-  showQuestion();
+save();
+
+updateAll();
+
+showToast(
+"🌱 Your garden grew!"
+);
+
 }
-  const questions = [
-    {
-      q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
-      options: [
-        "Document the finding",
-        "Assess the client's airway and breathing",
-        "Offer the client water",
-        "Recheck the respiratory rate in 4 hours"
-      ],
-      answer: 1,
-      rationale: "A respiratory rate of 8/min indicates bradypnea. Airway and breathing should be assessed immediately."
-    }
-  ];
 
-  const item = questions[0];
-  const choice = prompt(
-    item.q +
-    "\\n\\nA. " + item.options[0] +
-    "\\nB. " + item.options[1] +
-    "\\nC. " + item.options[2] +
-    "\\nD. " + item.options[3] +
-    "\\n\\nType A, B, C, or D:"
-  );
 
-  if (!choice) return;
+function manualStudy(){
 
-  const selected = choice.toUpperCase().charCodeAt(0) - 65;
+const input=document.getElementById("manual");
 
-  if (selected === item.answer) {
-    alert("✅ Correct!\\n\\n" + item.rationale);
-  } else {
-    alert("❌ Not quite.\\n\\nCorrect answer: B\\n\\n" + item.rationale);
-  }
+const minutes=Number(input.value);
+
+if(!minutes||minutes<=0){
+
+showToast("Enter study minutes.");
+
+return;
 }
+
+addStudy(minutes);
+
+input.value="";
+
+}
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+function todayKey(){
+
+return new Date()
+.toISOString()
+.slice(0,10);
+
+}
+
+function updateStreak(){
+
+const today=todayKey();
+
+if(data.lastStudy===today)return;
+
+if(!data.lastStudy){
+
+data.streak=1;
+
+}else{
+
+const yesterday=new Date();
+
+yesterday.setDate(
+yesterday.getDate()-1
+);
+
+const key=yesterday
+.toISOString()
+.slice(0,10);
+
+if(data.lastStudy===key){
+
+data.streak++;
+
+}else{
+
+data.streak=1;
+
+}
+
+}
+
+data.lastStudy=today;
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+let seconds=1500;
+
+let interval=null;
+
+function setTimer(minutes){
+
+pauseTimer();
+
+seconds=minutes*60;
+
+timerDisplay();
+
+}
+
+
+function timerDisplay(){
+
+const m=Math.floor(seconds/60)
+.toString().padStart(2,"0");
+
+const s=(seconds%60)
+.toString().padStart(2,"0");
+
+document.getElementById("timer")
+.textContent=m+":"+s;
+
+}
+
+
+function startTimer(){
+
+if(interval)return;
+
+interval=setInterval(()=>{
+
+seconds--;
+
+timerDisplay();
+
+if(seconds<=0){
+
+pauseTimer();
+
+addStudy(25);
+
+celebrate();
+
+showToast(
+"🎉 Focus session complete! +25 minutes"
+);
+
+}
+
+},1000);
+
+}
+
+
+function pauseTimer(){
+
+clearInterval(interval);
+
+interval=null;
+
+}
+
+
+function resetTimer(){
+
+pauseTimer();
+
+seconds=1500;
+
+timerDisplay();
+
+}
+
+
+/* =====================================================
+   GARDEN
+===================================================== */
+
+const flowers=[
+[30,"🌼","Daisy"],
+[120,"🌷","Tulip"],
+[300,"🌹","Rose"],
+[600,"🌻","Sunflower"],
+[1200,"💜","Lavender"],
+[2400,"🌸","Cherry Blossom"],
+[5000,"🌺","Nurse Garden"]
+];
+
+function renderGarden(){
+
+const box=document.getElementById("flowers");
+
+const unlocked=flowers.filter(
+f=>data.study>=f[0]
+);
+
+if(!unlocked.length){
+
+box.innerHTML=`
+<div style="
+width:100%;
+text-align:center;
+font-weight:800;
+color:#426247;
+">
+🌱<br><br>
+Your first flower is waiting.<br>
+Study for 30 minutes!
+</div>
+`;
+
+}else{
+
+box.innerHTML=unlocked.map(
+(f,i)=>`
+
+<div
+class="flower"
+style="animation-delay:${i*.2}s"
+>
+${f[1]}
+<small>${f[2]}</small>
+</div>
+
+`
+).join("");
+
+}
+
+const level=
+Math.floor(data.xp/100)+1;
+
+const current=data.xp%100;
+
+document.getElementById("level")
+.textContent=level;
+
+document.getElementById("levelText")
+.textContent="Garden Level "+level;
+
+document.getElementById("xpText")
+.textContent=data.xp+" XP";
+
+document.getElementById("xpBar")
+.style.width=current+"%";
+
+let stage="Starting Garden";
+
+if(data.study>=30)stage="First Bloom 🌼";
+if(data.study>=120)stage="Growing Garden 🌷";
+if(data.study>=300)stage="Flower Garden 🌹";
+if(data.study>=600)stage="Sunshine Garden 🌻";
+if(data.study>=1200)stage="Lavender Garden 💜";
+if(data.study>=2400)stage="Dream Garden 🌸";
+if(data.study>=5000)stage="Nurse Garden 🩺🌺";
+
+document.getElementById("stage")
+.textContent=stage;
+
+}
+
+
+/* =====================================================
+   WATER
+===================================================== */
+
+function renderWater(){
+
+const box=document.getElementById("water");
+
+box.innerHTML="";
+
+for(let i=1;i<=8;i++){
+
+const b=document.createElement("button");
+
+b.className=
+"water "+(i<=data.water?"full":"");
+
+b.textContent=
+i<=data.water?"💧":"○";
+
+b.onclick=()=>{
+
+data.water=i;
+
+save();
+
+renderWater();
+
+updateAll();
+
+};
+
+box.appendChild(b);
+
+}
+
+document.getElementById("waterText")
+.textContent=data.water+" / 8 glasses";
+
+}
+
+
+/* =====================================================
+   SELF CARE
+===================================================== */
+
+const selfItems=[
+["sleep","😴","Got enough sleep"],
+["food","🍽️","Ate a proper meal"],
+["shower","🚿","Took a shower"],
+["movement","🏃‍♀️","Moved my body"],
+["skincare","🧴","Did my skincare"],
+["break","🌿","Took a real break"],
+["meds","💊","Completed my usual medication/reminder routine"]
+];
+
+function renderSelf(){
+
+const box=document.getElementById("selfCare");
+
+box.innerHTML=selfItems.map(
+item=>`
+
+<label class="self">
+
+<input
+type="checkbox"
+${data.self[item[0]]?"checked":""}
+onchange="selfCheck('${item[0]}')"
+>
+
+<span>
+${item[1]} ${item[2]}
+</span>
+
+</label>
+
+`
+).join("");
+
+}
+
+
+function selfCheck(key){
+
+data.self[key]=!data.self[key];
+
+save();
+
+renderSelf();
+
+}
+
+
+/* =====================================================
+   MOOD
+===================================================== */
+
+function mood(value){
+
+data.mood=value;
+
+const messages={
+"😊":"You're feeling good today. Keep that energy. 🌸",
+"🙂":"A calm day is still a good day.",
+"😐":"Neutral days count too.",
+"😩":"You sound tired. Rest is productive too.",
+"😭":"Breathe. You don't have to solve everything tonight. 💗",
+"🥹":"You're doing your best. That matters."
+};
+
+document.getElementById("moodText")
+.textContent=messages[value];
+
+save();
+
+}
+
+
+/* =====================================================
+   JOURNAL
+===================================================== */
+
+function saveJournal(){
+
+data.journal=
+document.getElementById("journal")
+.value;
+
+save();
+
+document.getElementById("journalStatus")
+.textContent=
+"Saved on this device 💗";
+
+showToast("Check-in saved.");
+
+}
+
+
+/* =====================================================
+   FLASHCARDS
+===================================================== */
+
+function addCard(){
+
+const subject=
+document.getElementById("cardSubject")
+.value;
+
+const question=
+document.getElementById("question")
+.value.trim();
+
+const answer=
+document.getElementById("answer")
+.value.trim();
+
+if(!question||!answer){
+
+showToast("Fill in both sides.");
+
+return;
+
+}
+
+data.cards.push({
+id:Date.now(),
+subject,
+question,
+answer
+});
+
+document.getElementById("question")
+.value="";
+
+document.getElementById("answer")
+.value="";
+
+save();
+
+renderCards();
+
+showToast("Flashcard saved 🃏");
+
+}
+
+
+function deleteCard(id){
+
+data.cards=data.cards.filter(
+c=>c.id!==id
+);
+
+save();
+
+renderCards();
+
+}
+
+
+function renderCards(){
+
+const box=document.getElementById("cards");
+
+if(!data.cards.length){
+
+box.innerHTML=`
+<div class="card">
+<p class="muted">
+No cards yet. Create your first one above.
+</p>
+</div>
+`;
+
+return;
+}
+
+box.innerHTML=data.cards.map(c=>`
+
+<div class="card" style="margin-bottom:14px">
+
+<div
+class="flashcard"
+onclick="this.classList.toggle('show')"
+>
+
+<div class="front">
+${safe(c.question)}
+</div>
+
+<div class="back">
+${safe(c.answer)}
+</div>
+
+</div>
+
+<div style="
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+align-items:center;
+">
+
+<span class="muted">
+${safe(c.subject)}
+</span>
+
+<button
+class="danger"
+onclick="deleteCard(${c.id})"
+>
+Delete
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+   MED CALCULATOR
+===================================================== */
+
+function calculateDose(){
+
+const ordered=Number(
+document.getElementById("ordered").value
+);
+
+const available=Number(
+document.getElementById("available").value
+);
+
+const quantity=Number(
+document.getElementById("quantity").value
+);
+
+if(
+!ordered ||
+!available ||
+!quantity
+){
+
+document.getElementById("dose")
+.textContent="Enter all values.";
+
+return;
+
+}
+
+const answer=
+ordered/available*quantity;
+
+document.getElementById("dose")
+.textContent=
+"Answer: "+round(answer);
+
+}
+
+
+function round(value){
+
+return Math.round(value*100)/100;
+
+}
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+function renderAchievements(){
+
+const list=[
+
+["🌱","First Seed","Study 30 minutes",data.study>=30],
+
+["🌼","First Bloom","Unlock your first flower",data.study>=30],
+
+["🔥","Three Day Streak","Study 3 days in a row",data.streak>=3],
+
+["📚","Study Buddy","Study 5 hours",data.study>=300],
+
+["💧","Hydrated Nurse","Drink 8 glasses",data.water>=8],
+
+["🃏","Card Collector","Create 10 cards",data.cards.length>=10],
+
+["🌸","Garden Girl","Study 20 hours",data.study>=1200],
+
+["🩺","Future Nurse","Study 40 hours",data.study>=2400]
+
+];
+
+document.getElementById("achievements")
+.innerHTML=list.map(a=>`
+
+<div class="
+achievement
+${a[3]?"":"locked"}
+">
+
+<div class="achievement-icon">
+${a[0]}
+</div>
+
+<div>
+<b>${a[1]}</b>
+<div class="muted">${a[2]}</div>
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+   PRO
+===================================================== */
+
+function startPro(){
+
+/*
+  TEST MODE:
+  This lets you test every Pro feature.
+
+  REAL $10/month billing requires Stripe.
+*/
+
+data.pro=!data.pro;
+
+save();
+
+updatePro();
+
+if(data.pro){
+
+celebrate();
+
+showToast(
+"✨ Pro unlocked for testing!"
+);
+
+}else{
+
+showToast(
+"Pro preview turned off."
+);
+
+}
+
+}
+
+
+function updatePro(){
+
+const button=
+document.getElementById("proButton");
+
+const status=
+document.getElementById("proStatus");
+
+if(data.pro){
+
+button.textContent=
+"✓ Pro Active";
+
+status.textContent=
+"✨ Pro preview is active on this device.";
+
+}else{
+
+button.textContent=
+"✨ Try Pro";
+
+status.textContent=
+"Pro preview mode";
+
+}
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+document.getElementById("studyStat")
+.textContent=data.study;
+
+document.getElementById("streakStat")
+.textContent=data.streak;
+
+document.getElementById("waterStat")
+.textContent=data.water+"/8";
+
+document.getElementById("xpStat")
+.textContent=data.xp;
+
+document.getElementById("goalText")
+.textContent=data.study+" / 60";
+
+document.getElementById("goalBar")
+.style.width=
+Math.min(
+data.study/60*100,
+100
+)+"%";
+
+}
+
+
+/* =====================================================
+   TOOLS
+===================================================== */
+
+function updateTools(){}
+
+
+/* =====================================================
+   UPDATE EVERYTHING
+===================================================== */
+
+function updateAll(){
+
+updateStats();
+
+renderTasks();
+
+renderGarden();
+
+renderWater();
+
+renderSelf();
+
+renderCards();
+
+renderAchievements();
+
+updatePro();
+
+if(data.mood){
+
+const messages={
+"😊":"You're feeling good today. 🌸",
+"🙂":"A calm day is still a good day.",
+"😐":"Neutral days count too.",
+"😩":"Rest is productive too.",
+"😭":"Breathe. You don't have to solve everything tonight. 💗",
+"🥹":"You're doing your best. That matters."
+};
+
+document.getElementById("moodText")
+.textContent=messages[data.mood];
+
+}
+
+if(data.journal){
+
+document.getElementById("journal")
+.value=data.journal;
+
+}
+
+}
+
+
+/* =====================================================
+   CELEBRATION
+===================================================== */
+
+function celebrate(){
+
+const emojis=[
+"🌸",
+"🌷",
+"💗",
+"✨",
+"🌱",
+"🩺",
+"📚"
+];
+
+for(let i=0;i<25;i++){
+
+const el=
+document.createElement("div");
+
+el.className="confetti";
+
+el.textContent=
+emojis[
+Math.floor(
+Math.random()*emojis.length
+)
+];
+
+el.style.left=
+Math.random()*100+"%";
+
+el.style.animationDelay=
+Math.random()*0.5+"s";
+
+document.body.appendChild(el);
+
+setTimeout(
+()=>el.remove(),
+3000
+);
+
+}
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+let toastTimer;
+
+function showToast(message){
+
+const toast=
+document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+clearTimeout(toastTimer);
+
+toastTimer=setTimeout(
+()=>{
+toast.classList.remove("show");
+},
+2500
+);
+
+}
+
+
+/* =====================================================
+   SAFE HTML
+===================================================== */
+
+function safe(value){
+
+return String(value)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetEverything(){
+
+const yes=
+confirm(
+"Are you sure? This will delete all My Nurse Twin data on this device."
+);
+
+if(!yes)return;
+
+localStorage.removeItem(KEY);
+
+location.reload();
+
+}
+
+
+/* =====================================================
+   START APP
+===================================================== */
+
+document.body.classList.toggle(
+"dark",
+data.dark
+);
+
+document.getElementById("theme")
+.textContent=
+data.dark?"☀️":"🌙";
+
+setupDaily();
+
+updateAll();
+
+timerDisplay();
+
 </script>
+
 </body>
 </html>
