@@ -151,7 +151,39 @@ display();
 
 <script>
 function startNCLEX(){
-  alert("🩺 NCLEX Garden is growing! Your question generator is coming next 🌸");
+  const questions = [
+    {
+      q: "A client has a respiratory rate of 8/min. What should the nurse do first?",
+      options: [
+        "Document the finding",
+        "Assess the client's airway and breathing",
+        "Offer the client water",
+        "Recheck the respiratory rate in 4 hours"
+      ],
+      answer: 1,
+      rationale: "A respiratory rate of 8/min indicates bradypnea. Airway and breathing should be assessed immediately."
+    }
+  ];
+
+  const item = questions[0];
+  const choice = prompt(
+    item.q +
+    "\\n\\nA. " + item.options[0] +
+    "\\nB. " + item.options[1] +
+    "\\nC. " + item.options[2] +
+    "\\nD. " + item.options[3] +
+    "\\n\\nType A, B, C, or D:"
+  );
+
+  if (!choice) return;
+
+  const selected = choice.toUpperCase().charCodeAt(0) - 65;
+
+  if (selected === item.answer) {
+    alert("✅ Correct!\\n\\n" + item.rationale);
+  } else {
+    alert("❌ Not quite.\\n\\nCorrect answer: B\\n\\n" + item.rationale);
+  }
 }
 </script>
 </body>
